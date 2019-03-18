@@ -1,21 +1,24 @@
-#include "Stocks.h"
-#include <string>
-#include <iostream>
-
 #ifndef HASH_H
 #define HASH_H
+
+#include "Stock.h"
+#include <string>
+#include <iostream>
 
 class Hashtable
 {
 private:
-	// actual array holding pointers to class 'Stocks'
-	Stocks* table[1000];
+	// array holding pointers to class 'Stocks'
+	Stock* table[1000];
+    
+    // hash function for calculating index
+    int hash(std::string&);
+    
 public:
 	Hashtable();
 	~Hashtable();
 
-	// hash function processing stock symbol to store object pointer
-	void hash(Stocks* p, std::string sym);
+    void addStock();
 };
 
 #endif
