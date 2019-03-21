@@ -8,7 +8,7 @@
 
 Hashtable::Hashtable()
 {
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < TABLE_SIZE; i++)
     {
         this->table[i] = NULL;
     }
@@ -18,20 +18,27 @@ Hashtable::~Hashtable()
 {
 }
 
-int Hashtable::hash(int &stockID)
+int Hashtable::hash(int &stockID, int steps = 0)
 {
-    // TODO: Abbruchbedingung wenn dass die Tabelle voll ist!
-    
-    int index = stockID % 1000;
+    int index = stockID % TABLE_SIZE;
     std::cout << "Geprüfter Index: " << index << std::endl; //DEBUG
     
-    if (isFree(index)) // wenn nicht besetzt ist
+    //Abbruchbedingungen falls Tabelle voll ist
+    if (steps < TABLE_SIZE)
     {
-        return index;
+        // Kollisionsbehandlung (Rekursiv)
+        if (isFree(index)) // wenn nicht besetzt ist
+        {
+            return index;
+        }
+        else // ansonsten
+        {
+            index = hash(++index, ++steps); // soll der Index für die nächsthöhere Position geprüft werden (Lineare Kollision)
+        }
     }
-    else // ansonsten
+    else
     {
-        index = hash(++index); // soll der Index für die nächsthöhere Position geprüft werden (Lineare Kollision)
+        return TABLE_SIZE + 69; // Ungültigen Wert zurückgeben für Error-Handling
     }
     
     return index;
@@ -102,20 +109,25 @@ void Hashtable::addStock()
     newStock->symbol = sym;     // set symbol of new stock
     newStock->number = symToID(sym);    // set ID based on Symbol
     
-    index = hash(newStock->number); // set ArrayIndex based on ID
+    index = hash(newStock->number); // set ArrayIndex based on ID, liefert TABLE_SIZE++ zurück wenn Tabelle voll ist
     
-    // TODO: Kollisionsbehandlung
-    
-    this->table[index] = newStock; // adding Stock into Hashtable at calculated ArrayIndex
-    
+    // Wenn Alle Plätze belegt sind
+    if (index > TABLE_SIZE)
+    {
+        std::cout << "Table is full. Please delete one Stock and try again!" << std::endl;
+    }
+    else
+    {
+        this->table[index] = newStock; // adding Stock into Hashtable at calculated ArrayIndex
+    }
 }
 
 void Hashtable::deleteStock()
 {
-    // unbedingt danach den Platz auf NULL setzen.
+    std::string sym = inputSymbol();
 }
 
-void Hashtable::importStock()
+void Hashtable::importStockday()
 {
     
 }

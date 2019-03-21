@@ -32,7 +32,7 @@ int main()
                 break;
             case 3:
                 // Kurswerte für eine Aktie werden aus einer csv Datei importiert
-                hash.importStock();
+                hash.importStockday();
                 break;
             case 4:
                 // Eine Aktie wird in der Hashtabelle gesucht

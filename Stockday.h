@@ -7,5 +7,6 @@
 #ifndef Stockday_h
 #define Stockday_h
 
+// TODO: Implementierung der StockDays
 
 #endif
