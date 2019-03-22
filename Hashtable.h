@@ -23,13 +23,16 @@ private:
 public:
 	Hashtable();
 	~Hashtable();
+    bool debug;
     
-    // hash function for calculating index (PUBLIC FOR TESTING!)
-    int hash(int&, int);
+    // (PUBLIC FOR TESTING!)
+    int hash(int, int);
+    int add(int, int);
     int symToID(std::string&);
-    int search(int&);
+    int search(int, int);
     bool isFree(int&);
-
+    
+    // Actual Puplic
     void addStock();
     void deleteStock();
     void importStockday();
