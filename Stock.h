@@ -22,6 +22,8 @@ public:
 
 	// public attributes to identify object
 	std::string symbol;
+    std::string name;
+    std::string wkn;
     int number;
 };
 

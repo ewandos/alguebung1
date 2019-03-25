@@ -8,7 +8,7 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
-#define TABLE_SIZE 3
+#define TABLE_SIZE 20
 
 #include "Stock.h"
 #include <string>
@@ -20,19 +20,17 @@ private:
 	// array holding pointers to class 'Stocks'
 	Stock* table[TABLE_SIZE];
     
-public:
-	Hashtable();
-	~Hashtable();
-    bool debug;
-    
-    // (PUBLIC FOR TESTING!)
     int hash(int, int);
     int add(int, int);
     int symToID(std::string&);
     int search(int, int);
     bool isFree(int&);
     
-    // Actual Puplic
+public:
+	Hashtable();
+	~Hashtable();
+    bool debug;
+    
     void addStock();
     void deleteStock();
     void importStockday();
