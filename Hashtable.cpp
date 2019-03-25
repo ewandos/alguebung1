@@ -227,7 +227,18 @@ void Hashtable::importStockday()
 
 void Hashtable::searchStock()
 {
+    std::string sym = inputSymbol(); // Get Searched Symbol
+    int id = symToID(sym); // Get searched ID
+    int index = search(id);
     
+    if(index < TABLE_SIZE)
+    {
+        if(this->debug){std::cout << "Gefunden am Index: " << index << std::endl;} //DEBUG
+        std::cout << "Aktie gefunden!" << std::endl;
+        
+        // TODO: Ausgabe von aktuellstem STOCKDAY , Ausgabe von ID ist nur zu Testzwecken!
+        std::cout << "StockID: " << this->table[index]->number << std::endl;
+    }
 }
 
 void Hashtable::plotStock()

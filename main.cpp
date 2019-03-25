@@ -27,7 +27,8 @@ int main()
 			"5: Graphik anzeigen\n"
 			"6: Speichern\n"
 			"7: Laden\n"
-			"8: Beenden\n\n"
+            "8: Beenden\n"
+			"0: DEBUGGING\n\n"
             "Aktion wählen: ";
 
 		std::cin >> input;
