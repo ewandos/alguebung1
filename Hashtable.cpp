@@ -239,7 +239,7 @@ void Hashtable::searchStock()
 
 void Hashtable::plotStock()
 {
-
+	
 }
 
 void Hashtable::save()

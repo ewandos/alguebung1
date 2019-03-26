@@ -14,7 +14,7 @@ int main()
     std::cout << " ____) | || (_) | (__|   <  | |  | | (_| | | | | (_| | (_| |  __/ |   " << std::endl;
     std::cout << "|_____/ \\__\\___/ \\___|_|\\_\\ |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   " << std::endl;
     std::cout << "                                                       __/ |          " << std::endl;
-    std::cout << "erfurchtvoll präsentiert von Andert & Ewert           |___/           " << std::endl;
+    std::cout << "ehrfruchtvoll präsentiert von Andert & Ewert           |___/           " << std::endl;
     */
     
 	while (true)
