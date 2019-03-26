@@ -17,13 +17,6 @@ void Stock::inputCSV() {
     // Close Filestream
 }
 
-void Stock::plotStockdays() { 
-    // Take Stockdays Array
-    // Plot all available Stockdays
-    // If not enough days -> Error Message
-}
-
-
 
 
 
