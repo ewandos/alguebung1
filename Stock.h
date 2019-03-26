@@ -28,6 +28,7 @@ public:
     int number;
 
     void inputCSV();
+    void plotStockdays();
 };
 
 #endif
