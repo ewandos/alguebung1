@@ -8,13 +8,13 @@ int main()
     
     /*
     std::cout << "  _____ _             _      __  __                                   " << std::endl;
-    std::cout << " / ____| |           | |    |  \\/  |                                  " << std::endl;
+    std::cout << " / ____| |           | |    |  \\/  |                               " << std::endl;
     std::cout << "| (___ | |_ ___   ___| | __ | \\  / | __ _ _ __   __ _  __ _  ___ _ __ " << std::endl;
     std::cout << " \\___ \\| __/ _ \\ / __| |/ / | |\\/| |/ _` | '_ \\ / _` |/ _` |/ _ \\ '__|" << std::endl;
     std::cout << " ____) | || (_) | (__|   <  | |  | | (_| | | | | (_| | (_| |  __/ |   " << std::endl;
     std::cout << "|_____/ \\__\\___/ \\___|_|\\_\\ |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   " << std::endl;
     std::cout << "                                                       __/ |          " << std::endl;
-    std::cout << "erfurchtvoll präsentiert von Andert & Ewert           |___/           " << std::endl;
+    std::cout << "ehrfurchtvoll präsentiert von Andert & Ewert           |___/           " << std::endl;
     */
     
 	while (true)

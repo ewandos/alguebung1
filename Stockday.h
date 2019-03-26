@@ -10,6 +10,9 @@
 #define Stockday_h
 
 #include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
 
 class Stockday
 {

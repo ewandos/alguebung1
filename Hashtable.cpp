@@ -93,7 +93,7 @@ int Hashtable::search(int stockID, int steps = 0)
     }
     else
     {
-        std::cout << "Nicht gefunden!" << std::endl;
+        std::cout << "Aktie nicht gefunden!" << std::endl;
         return TABLE_SIZE + 69; // Ungültigen Wert zurückgeben für Error-Handling
     }
     
@@ -220,6 +220,17 @@ void Hashtable::deleteStock()
 void Hashtable::importStockday()
 {
     
+    std::string sym = inputSymbol(); // Get Searched Symbol
+    int id = symToID(sym); // Get searched ID
+    int index = search(id);
+    
+    if(index < TABLE_SIZE)
+    {
+        // CSV is named equal to Symbol, so we can search instantly
+        std::string path = sym.append(".csv");
+        this->table[index]->inputCSV(path);
+        std::cout << "HELLO";
+    }
 }
 
 void Hashtable::searchStock()
