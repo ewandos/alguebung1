@@ -10,12 +10,15 @@
 
 #include "Stockday.h"
 #include <iostream>
+#include <fstream>
+#include <string>
 
 class Stock
 {
 private:
     // Struct Data are now Classes called STOCKDAY
-    Stockday kursdaten[30];
+    Stockday stockdays[30];
+    int stockdaysCount;
 	
 public:
 	Stock();
@@ -27,7 +30,8 @@ public:
     std::string wkn;
     int number;
 
-    void inputCSV();
+    void inputCSV(std::string&);
+    void plotStockdays();
 };
 
 #endif
