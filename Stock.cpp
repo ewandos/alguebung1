@@ -41,6 +41,13 @@ void Stock::inputCSV(std::string &path) {
     }
 }
 
+void Stock::plotStockdays() { 
+    // Take Stockdays Array
+    // Plot all available Stockdays
+    // If not enough days -> Error Message
+}
+
+
 
 
 
