@@ -29,8 +29,7 @@ Hashtable::~Hashtable()
  * =================
  */
 
-int Hashtable::hash(int index, int steps = 0)
-{
+int Hashtable::hash(int index, int steps = 0) {
     /*
      * index = ArrayIndex oder StockID
      * steps = wie oft die Hashfunktion in der Prozedur aufgerufen wurde (für Abbruchbedingungen)
@@ -88,7 +87,7 @@ int Hashtable::search(int stockID, int steps = 0)
         else
         {
             if(this->debug){std::cout << this->table[index]->number << " ? " << stockID << " (false)" << std::endl;} //DEBUG
-            index = search(stockID, ++steps); // soll nächster Index geprüft werden (Quadratische Sondierung in Hash-Funktion)!
+            index = search(++stockID, ++steps); // soll nächster Index geprüft werden (Quadratische Sondierung in Hash-Funktion)!
         }
     }
     else
@@ -140,7 +139,7 @@ std::string inputSymbol() // evtl in Classe Stock verlegen
     std::string sym;
     
     /* Getting the Symbol */
-    std::cout << "Kuerzel eingeben: ";
+    std::cout << "Gesuchten Kuerzel eingeben: ";
     std::cin >> sym;
     
     // TODO: Validierung!
@@ -251,9 +250,7 @@ void Hashtable::searchStock()
 
 void Hashtable::plotStock()
 {
-    // Get Symbol
-    // search() Stock in Hashtable
-    // Aufrufen von Methode von Stock->plotStockdays()
+	
 }
 
 void Hashtable::save()

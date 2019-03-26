@@ -41,7 +41,7 @@ int main()
                 hash.debug = true;
                 break;
             case 1:
-                // Eine Aktie mit Namen, WKN und Kürzel wird hinzugefügt
+                // Eine Aktie mit Namen, WKN und Kürzel wird hinzugefügt
                 hash.addStock(); // FERTIG
                 break;
             case 2:
@@ -49,18 +49,18 @@ int main()
                 hash.deleteStock(); // FERTIG
                 break;
             case 3:
-                // Kurswerte für eine Aktie werden aus einer csv Datei importiert
+                // Kurswerte für eine Aktie werden aus einer csv Datei importiert
                 hash.importStockday();
                 break;
             case 4:
                 // Eine Aktie wird in der Hashtabelle gesucht
-                // (Eingabe von Namen oder Kürzel) und der
+                // (Eingabe von Namen oder Kürzel) und der
                 // aktuellste Kurseintrag wird ausgegeben.
                 hash.searchStock(); // SUCHE FERTIG, AUSGABE FEHLT
                 break;
             case 5:
                 // Die Schlusskurse der letzten 30 Tage einer Aktie werden als ASCII
-                // Grafik ausgegeben, Format ist frei wählbar.
+                // Grafik ausgegeben, Format ist frei wählbar.
                 hash.plotStock();
                 break;
             case 6:
@@ -68,7 +68,7 @@ int main()
                 hash.save();
                 break;
             case 7:
-                // Programm lädt die Hashtabelle aus einer Datei
+                // Programm lädt die Hashtabelle aus einer Datei
                 hash.load();
             case 8:
                 // Programm wird beendet
