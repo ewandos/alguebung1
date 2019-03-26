@@ -11,3 +11,5 @@
 - Load & Save (Serialisierung)
 - Plotting
 - CSV Import
+
+Habe was geändert.
