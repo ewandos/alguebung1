@@ -8,13 +8,14 @@
 #ifndef STOCK_H
 #define STOCK_H
 
+#include "Stockday.h"
 #include <iostream>
 
 class Stock
 {
 private:
     // Struct Data are now Classes called STOCKDAY
-    // TODO: Array needs to be created!
+    Stockday kursdaten[30];
 	
 public:
 	Stock();
@@ -25,6 +26,8 @@ public:
     std::string name;
     std::string wkn;
     int number;
+
+    void inputCSV();
 };
 
 #endif

@@ -2,10 +2,21 @@
 
 Stock::Stock()
 {
-    // Constructur
+    
 }
 
 Stock::~Stock()
 {
-	// free structs
+
 }
+
+void Stock::inputCSV() { 
+    // Open Filestream
+    // Separate different Lines from eachother
+    // using the "inputData()" Method of Stockday for each line
+    // Close Filestream
+}
+
+
+
+

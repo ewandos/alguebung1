@@ -5,6 +5,7 @@ int main()
 {
     Hashtable hash;
 	int input;
+    
     /*
     std::cout << "  _____ _             _      __  __                                   " << std::endl;
     std::cout << " / ____| |           | |    |  \\/  |                                  " << std::endl;
@@ -13,7 +14,7 @@ int main()
     std::cout << " ____) | || (_) | (__|   <  | |  | | (_| | | | | (_| | (_| |  __/ |   " << std::endl;
     std::cout << "|_____/ \\__\\___/ \\___|_|\\_\\ |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   " << std::endl;
     std::cout << "                                                       __/ |          " << std::endl;
-    std::cout << "von Andert & Ewert                                    |___/           " << std::endl;
+    std::cout << "erfurchtvoll präsentiert von Andert & Ewert           |___/           " << std::endl;
     */
     
 	while (true)
@@ -41,11 +42,11 @@ int main()
                 break;
             case 1:
                 // Eine Aktie mit Namen, WKN und Kürzel wird hinzugefügt
-                hash.addStock();
+                hash.addStock(); // FERTIG
                 break;
             case 2:
                 // Aktie wird gelöscht
-                hash.deleteStock();
+                hash.deleteStock(); // FERTIG
                 break;
             case 3:
                 // Kurswerte für eine Aktie werden aus einer csv Datei importiert
@@ -55,7 +56,7 @@ int main()
                 // Eine Aktie wird in der Hashtabelle gesucht
                 // (Eingabe von Namen oder Kürzel) und der
                 // aktuellste Kurseintrag wird ausgegeben.
-                hash.searchStock();
+                hash.searchStock(); // SUCHE FERTIG, AUSGABE FEHLT
                 break;
             case 5:
                 // Die Schlusskurse der letzten 30 Tage einer Aktie werden als ASCII

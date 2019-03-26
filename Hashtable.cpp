@@ -49,7 +49,7 @@ int Hashtable::add(int stockID, int steps = 0)
     if (steps < TABLE_SIZE)
     {
         // Kollisionsbehandlung (Rekursiv)
-        if (isFree(index)) // wenn nicht besetzt ist
+        if (isFree(index)) // wenn Platz frei ist
         {
             return index;
         }
@@ -72,9 +72,10 @@ int Hashtable::search(int stockID, int steps = 0)
     int index = hash(stockID, steps);
     if(this->debug){std::cout << "Errechneter Index: " << index << " (" << stockID << ")" << std::endl;} // <- DEBUG
     
+    // Abbruchbedingungen falls Tabelle voll ist
     if (steps < TABLE_SIZE)
     {
-        if (isFree(index))
+        if (isFree(index)) // wenn Platz frei ist
         {
             index = search(stockID, ++steps);
         }
@@ -86,7 +87,7 @@ int Hashtable::search(int stockID, int steps = 0)
         else
         {
             if(this->debug){std::cout << this->table[index]->number << " ? " << stockID << " (false)" << std::endl;} //DEBUG
-            index = search(++stockID, ++steps);
+            index = search(++stockID, ++steps); // soll nächster Index geprüft werden (Quadratische Sondierung in Hash-Funktion)!
         }
     }
     else
@@ -133,12 +134,12 @@ bool Hashtable::isFree(int &i)
     }
 }
 
-std::string inputSymbol()
+std::string inputSymbol() // evtl in Classe Stock verlegen
 {
-    std::string sym; // string for Stock-Symbol
+    std::string sym;
     
     /* Getting the Symbol */
-    std::cout << "Kuerzel eingeben: ";
+    std::cout << "Gesuchten Kuerzel eingeben: ";
     std::cin >> sym;
     
     // TODO: Validierung!
@@ -146,9 +147,9 @@ std::string inputSymbol()
     return sym;
 }
 
-std::string inputWKN()
+std::string inputWKN() // evtl in Classe Stock verlegen
 {
-    std::string wkn; // string for Stock-WKN
+    std::string wkn;
     
     /* Getting the WKN */
     std::cout << "WKN eingeben: ";
@@ -159,9 +160,9 @@ std::string inputWKN()
     return wkn;
 }
 
-std::string inputName()
+std::string inputName() // evtl in Classe Stock verlegen
 {
-    std::string name; // string for Stock-Name
+    std::string name;
     
     /* Getting the Name */
     std::cout << "Name eingeben: ";
@@ -181,18 +182,13 @@ std::string inputName()
 void Hashtable::addStock()
 {
     // Get Stock Information from User
-    //std::string name = inputName();
-    //std::string wkn = inputWKN();
     std::string sym = inputSymbol();
     
     /* Put the Stock in Hashtable */
     Stock* newStock = new Stock;    // defining pointer
-    //newStock->wkn = wkn;
-    //newStock->name = name;
     
     newStock->symbol = sym;     // set symbol of new stock
     newStock->number = symToID(sym);    // set ID based on Symbol
-
     
     int index = add(newStock->number); // get ArrayIndex based on ID, liefert TABLE_SIZE++ zurück wenn Tabelle voll ist
     
@@ -255,7 +251,3 @@ void Hashtable::load()
 {
 
 }
-
-
-
-

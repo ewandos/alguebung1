@@ -3,14 +3,8 @@
 ## Hashtable::searchStock()
 - Ausgabe von aktuellstem STOCKDAY
 
-## Alle Input-Methodsn
+## Alle Input-Methoden
 - Validierung
-
-## Class Stockday
-- Variablen hinzufügen
-
-## Class Stock
-- 30er Array von Stockdays
 
 
 # Aufgaben
