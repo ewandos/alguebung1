@@ -183,12 +183,17 @@ void Hashtable::addStock()
 {
     // Get Stock Information from User
     std::string sym = inputSymbol();
+    std::string name = inputName();
+    std::string wkn = inputWKN();
     
     /* Put the Stock in Hashtable */
     Stock* newStock = new Stock;    // defining pointer
     
     newStock->symbol = sym;     // set symbol of new stock
     newStock->number = symToID(sym);    // set ID based on Symbol
+    
+    newStock->name = name;
+    newStock->wkn = wkn;
     
     int index = add(newStock->number); // get ArrayIndex based on ID, liefert TABLE_SIZE++ zurück wenn Tabelle voll ist
     
@@ -218,7 +223,7 @@ void Hashtable::deleteStock()
 
 void Hashtable::importStockday()
 {
-    
+    std::cout << "Bitte die .csv Datei im selben Verzeichnis ablegen." << std::endl;
     std::string sym = inputSymbol(); // Get Searched Symbol
     int id = symToID(sym); // Get searched ID
     int index = search(id);
@@ -228,7 +233,7 @@ void Hashtable::importStockday()
         // CSV is named equal to Symbol, so we can search instantly
         std::string path = sym.append(".csv");
         this->table[index]->inputCSV(path);
-        std::cout << "Kursdaten von " << "\"" << path << "\" erfolgreich importiert." << std::endl;
+        std::cout << "Kursdaten von " << "\"" << table[index]->name << "\" erfolgreich importiert." << std::endl;
     }
 }
 

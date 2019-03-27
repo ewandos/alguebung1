@@ -75,7 +75,7 @@ int main()
                 return 0;
             default:
                 // Ask User to Enter valid input
-                std::cout << "Bitte mit gültiger Eingabe wiederholen.";
+                std::cout << "Bitte mit gültiger Eingabe wiederholen." << std::endl;
                 break;
 		}
         
