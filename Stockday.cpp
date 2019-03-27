@@ -14,10 +14,12 @@ void Stockday::inputData(std::string input) {
     // https://stackoverflow.com/questions/1894886/parsing-a-comma-delimited-stdstring
     // http://www.cplusplus.com/reference/vector/vector/
     
-    std::vector<int> vect;
+    std::vector<double> vect;
     std::stringstream ss(input);
     
     double value = 0;
+    
+    
     
     while (ss >> value)
     {

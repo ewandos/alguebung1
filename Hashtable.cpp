@@ -139,7 +139,7 @@ std::string inputSymbol() // evtl in Classe Stock verlegen
     std::string sym;
     
     /* Getting the Symbol */
-    std::cout << "Gesuchten Kuerzel eingeben: ";
+    std::cout << "Kuerzel der Aktie eingeben: ";
     std::cin >> sym;
     
     // TODO: Validierung!
@@ -228,7 +228,6 @@ void Hashtable::importStockday()
         // CSV is named equal to Symbol, so we can search instantly
         std::string path = sym.append(".csv");
         this->table[index]->inputCSV(path);
-        std::cout << "HELLO";
     }
 }
 
