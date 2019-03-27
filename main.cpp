@@ -23,8 +23,8 @@ int main()
             "-------------\n"
 			"1: Aktie hinzufuegen\n"
 			"2: Aktie loeschen\n"
-			"3: Aktien importieren\n"
-			"4: Aktienkurs suchen\n"
+			"3: Aktienkurse importieren\n"
+			"4: Aktuellsten Aktienkurs ausgeben\n"
 			"5: Graphik anzeigen\n"
 			"6: Speichern\n"
 			"7: Laden\n"
@@ -75,7 +75,7 @@ int main()
                 return 0;
             default:
                 // Ask User to Enter valid input
-                std::cout << "Please enter a valid option: ";
+                std::cout << "Bitte mit gültiger Eingabe wiederholen.";
                 break;
 		}
         

@@ -228,6 +228,7 @@ void Hashtable::importStockday()
         // CSV is named equal to Symbol, so we can search instantly
         std::string path = sym.append(".csv");
         this->table[index]->inputCSV(path);
+        std::cout << "Kursdaten von " << "\"" << path << "\" erfolgreich importiert." << std::endl;
     }
 }
 
@@ -240,10 +241,9 @@ void Hashtable::searchStock()
     if(index < TABLE_SIZE)
     {
         if(this->debug){std::cout << "Gefunden am Index: " << index << std::endl;} //DEBUG
-        std::cout << "Aktie gefunden!" << std::endl;
         
-        // TODO: Ausgabe von aktuellstem STOCKDAY , Ausgabe von ID ist nur zu Testzwecken!
-        std::cout << "StockID: " << this->table[index]->number << std::endl;
+        std::cout << "\nNeuste Daten zu " << sym << ":" << std::endl;
+        this->table[index]->printStockday();
     }
 }
 

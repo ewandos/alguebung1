@@ -9,30 +9,28 @@ Stockday::~Stockday() {
 }
 
 void Stockday::inputData(std::string input) {
-    // Input CSV Data
-    // Get OneLine from CSV which is ONE Day and parse it to Class Variables
-    // https://stackoverflow.com/questions/1894886/parsing-a-comma-delimited-stdstring
-    // http://www.cplusplus.com/reference/vector/vector/
+    // Get one line from the CSV which represents ONE Day
+    // and parse it to Stockdays-Variables
     
     std::vector<double> vect;
-    std::stringstream ss(input);
+    std::stringstream ss(input); // Create Strignstream from Input
     
-    double value = 0;
+    double value = 0; // Temporary Input Value
     
-    
-    
-    while (ss >> value)
+    while (ss >> value) // Cast to Double
     {
-        vect.push_back(value);
+        vect.push_back(value); // Push to Vector
         
-        if (ss.peek() == ',')
+        if (ss.peek() == ',') // Discard Delimiters
         {
             ss.ignore();
         }
     }
     
-    for (int i = 0; i < vect.size(); i++)
+    for (int i = 0; i < vect.size(); i++) // Go through Vector
     {
+        // Order in CSV is everytime the same
+        // so the index in vector represents the correct values of stockday
         switch (i)
         {
             case 0: // YEAR
@@ -62,7 +60,9 @@ void Stockday::inputData(std::string input) {
             case 8: // VOLUMEN
                 this->volume = vect.at(i);
                 break;
-            default: // WHATEVER YOU CUNT
+            default:
+                std::cout << "CSV nicht korrekt formatiert!" << std::endl;
+                return;
                 break;
         }
     }

@@ -19,6 +19,7 @@ class Stockday
 public:
     Stockday();
     ~Stockday();
+    bool isFilled;
     
     int date[3];
     double open;

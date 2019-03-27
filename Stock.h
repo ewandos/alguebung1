@@ -32,6 +32,7 @@ public:
 
     void inputCSV(std::string&);
     void plotStockdays();
+    void printStockday();
 };
 
 #endif
