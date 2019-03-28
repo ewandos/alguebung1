@@ -233,7 +233,6 @@ void Hashtable::importStockday()
         // CSV is named equal to Symbol, so we can search instantly
         std::string path = sym.append(".csv");
         this->table[index]->inputCSV(path);
-        std::cout << "Kursdaten von " << "\"" << table[index]->name << "\" erfolgreich importiert." << std::endl;
     }
 }
 
@@ -254,7 +253,17 @@ void Hashtable::searchStock()
 
 void Hashtable::plotStock()
 {
-	
+	std::string sym = inputSymbol(); // Get Searched Symbol
+	int id = symToID(sym); // Get searched ID
+	int index = search(id);
+
+	if (index < TABLE_SIZE)
+	{
+		if (this->debug) { std::cout << "Gefunden am Index: " << index << std::endl; } //DEBUG
+
+		std::cout << "\nGraphik zu " << sym << ":" << std::endl;
+		this->table[index]->plotStockdays();
+	}
 }
 
 void Hashtable::save()
