@@ -1,7 +1,7 @@
 /*
  * Bildet einen Tag eines STOCKS (=Aktie).
- * Hier müssen alle Daten in einer Klasse gespeichert
- * werden, die für EINEN TAG gespeichert werden.
+ * Hier muessen alle Daten in einer Klasse gespeichert
+ * werden, die fuer EINEN TAG gespeichert werden.
  * (Date,Open,High,Low,Close,Volume,Adj Close)
  * am besten alles doubles
  */

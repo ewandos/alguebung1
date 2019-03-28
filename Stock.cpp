@@ -16,23 +16,20 @@ Stock::~Stock()
 
 }
 
-std::string getOsName()
-{
-#ifdef _WIN32
-    return "Windows";
-#elif _WIN64
-    return "Windows";
-#elif __unix || __unix__
-    return "Unix";
-#elif __APPLE__ || __MACH__
-    return "Mac";
-#elif __linux__
-    return "Linux";
-#elif __FreeBSD__
-    return "FreeBSD";
-#else
-    return "Other";
-#endif
+int Stock::getAsciiByOs() {
+	#ifdef _WIN32
+		return 254;
+	#elif _WIN64
+		return 254;
+	#elif __unix || __unix__
+		return 35;
+	#elif __APPLE__ || __MACH__
+		return 35;
+	#elif __linux__
+		return 35;
+	#else
+		return 35;
+	#endif
 }
 
 void Stock::inputCSV(std::string &path) {
@@ -50,9 +47,9 @@ void Stock::inputCSV(std::string &path) {
     {
         while (getline (file,line))
         {
-            if (lineCount > 0) // Erste Zeile überspringen
+            if (lineCount > 0) // Erste Zeile ueberspringen
             {
-                // Füllt linear das Array auf und speichert die Größe.
+                // Fuellt linear das Array auf und speichert die Groeße.
                 this->stockdays[stockdaysCount].inputData(line);
                 this->stockdays[stockdaysCount].isFilled = true;
                 this->stockdaysCount++;
@@ -73,10 +70,10 @@ void Stock::plotStockdays()
 	int i;
 	double min, max;
 	
-	// überprüfen, ob mindestens 7 Tage an Daten enthalten sind
+	// ueberpruefen, ob mindestens 7 Tage an Daten enthalten sind
 	for (i = 0; i < 7; i++) {
 		if (stockdays[i].isFilled == false) {
-			std::cout << "Wird nicht geplottet, nicht genügend Daten" << std::endl;
+			std::cout << "Wird nicht geplottet, nicht genuegend Daten" << std::endl;
 			return;
 		}
 	}
@@ -101,15 +98,8 @@ void Stock::plotStockdays()
 	float scale = (max - min) / 30;
 	i = 0;
     
-    char bar;
-    if (getOsName().compare("Windows"))
-    {
-        bar = 254;
-    }
-    else if (getOsName().compare("Mac"))
-    {
-        bar = '#';
-    }
+    char bar = getAsciiByOs();
+
 	while (stockdays[i].isFilled) {
 		std::cout << stockdays[i].date[0] << "-"; 
 		if (stockdays[i].date[1] < 10) { std::cout << "0"; }

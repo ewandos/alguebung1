@@ -2,7 +2,7 @@
  * Beinhaltet die Klasse STOCK (=Aktie), welche durch
  * die einzigartige Bezeichung SYMBOL identifiziert wird.
  * STOCK importiert die Klasse STOCKDAY, welche die Daten
- * für eines Tages beinhaltet.
+ * fuer eines Tages beinhaltet.
  */
 
 #ifndef STOCK_H
@@ -19,7 +19,7 @@ private:
     // Struct Data are now Classes called STOCKDAY
     Stockday stockdays[30];
     int stockdaysCount;
-    std::string getOsName();
+	int getAsciiByOs();
 	
 public:
 	Stock();

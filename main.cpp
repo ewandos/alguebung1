@@ -14,12 +14,12 @@ int main()
     std::cout << " ____) | || (_) | (__|   <  | |  | | (_| | | | | (_| | (_| |  __/ |   " << std::endl;
     std::cout << "|_____/ \\__\\___/ \\___|_|\\_\\ |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   " << std::endl;
     std::cout << "                                                       __/ |          " << std::endl;
-    std::cout << "ehrfurchtvoll präsentiert von Andert & Ewert           |___/           " << std::endl;
+    std::cout << "ehrfurchtvoll praesentiert von Andert & Ewert           |___/           " << std::endl;
     */
     
 	while (true)
     {
-		std::cout << "\n\nHauptmenü\n"
+		std::cout << "\n\nHauptmenue\n"
             "-------------\n"
 			"1: Aktie hinzufuegen\n"
 			"2: Aktie loeschen\n"
@@ -30,7 +30,7 @@ int main()
 			"7: Laden\n"
             "8: Beenden\n"
 			"0: DEBUGGING\n\n"
-            "Aktion wählen: ";
+            "Aktion waehlen: ";
 
 		std::cin >> input;
 
@@ -41,26 +41,26 @@ int main()
                 hash.debug = true;
                 break;
             case 1:
-                // Eine Aktie mit Namen, WKN und Kürzel wird hinzugefügt
+                // Eine Aktie mit Namen, WKN und Kuerzel wird hinzugefuegt
                 hash.addStock(); // FERTIG
                 break;
             case 2:
-                // Aktie wird gelöscht
+                // Aktie wird geloescht
                 hash.deleteStock(); // FERTIG
                 break;
             case 3:
-                // Kurswerte für eine Aktie werden aus einer csv Datei importiert
+                // Kurswerte fuer eine Aktie werden aus einer csv Datei importiert
                 hash.importStockday();
                 break;
             case 4:
                 // Eine Aktie wird in der Hashtabelle gesucht
-                // (Eingabe von Namen oder Kürzel) und der
+                // (Eingabe von Namen oder Kuerzel) und der
                 // aktuellste Kurseintrag wird ausgegeben.
                 hash.searchStock(); // SUCHE FERTIG, AUSGABE FEHLT
                 break;
             case 5:
                 // Die Schlusskurse der letzten 30 Tage einer Aktie werden als ASCII
-                // Grafik ausgegeben, Format ist frei wählbar.
+                // Grafik ausgegeben, Format ist frei waehlbar.
                 hash.plotStock();
                 break;
             case 6:
@@ -68,14 +68,14 @@ int main()
                 hash.save();
                 break;
             case 7:
-                // Programm lädt die Hashtabelle aus einer Datei
+                // Programm laedt die Hashtabelle aus einer Datei
                 hash.load();
             case 8:
                 // Programm wird beendet
                 return 0;
             default:
                 // Ask User to Enter valid input
-                std::cout << "Bitte mit gültiger Eingabe wiederholen." << std::endl;
+                std::cout << "Bitte mit gueltiger Eingabe wiederholen." << std::endl;
                 break;
 		}
         

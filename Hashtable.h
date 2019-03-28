@@ -1,5 +1,5 @@
 /*
- * Beinhaltet die Hashtabelle in welcher Pointer für
+ * Beinhaltet die Hashtabelle in welcher Pointer fuer
  * alle Aktien gespeichert werden. Das einzigartige
  * Symbol jeder Aktie soll bestimmen, wo die Aktie
  * abgespeichert wird.

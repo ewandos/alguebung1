@@ -9,7 +9,7 @@
 
 Hashtable::Hashtable()
 {
-    // DEBUG INFORMATION! : Im Code sind Outputs für Debug-Zwecke, welche nur bei true ausgegeben werden
+    // DEBUG INFORMATION! : Im Code sind Outputs fuer Debug-Zwecke, welche nur bei true ausgegeben werden
     this->debug = false;
     
     // Init the Hashtable
@@ -32,8 +32,8 @@ Hashtable::~Hashtable()
 int Hashtable::hash(int index, int steps = 0) {
     /*
      * index = ArrayIndex oder StockID
-     * steps = wie oft die Hashfunktion in der Prozedur aufgerufen wurde (für Abbruchbedingungen)
-     * sondierung = rechnet Summant für Index um zum nächsten Index zu springen
+     * steps = wie oft die Hashfunktion in der Prozedur aufgerufen wurde (fuer Abbruchbedingungen)
+     * sondierung = rechnet Summant fuer Index um zum naechsten Index zu springen
      */
     
     double sondierung = pow(2, (double)steps);
@@ -55,13 +55,13 @@ int Hashtable::add(int stockID, int steps = 0)
         }
         else // ansonsten
         {
-            index = add(stockID, ++steps); // soll nächster Index geprüft werden (Quadratische Sondierung in Hash-Funktion)!
+            index = add(stockID, ++steps); // soll naechster Index geprueft werden (Quadratische Sondierung in Hash-Funktion)!
         }
     }
     else
     {
         std::cout << "Table is full. Please delete one Stock and try again!" << std::endl;
-        return TABLE_SIZE + 69; // Ungültigen Wert (Wert welcher größer ist als das Array) zurückgeben für Error-Handling
+        return TABLE_SIZE + 69; // Ungueltigen Wert (Wert welcher groeßer ist als das Array) zurueckgeben fuer Error-Handling
     }
     
     return index;
@@ -87,13 +87,13 @@ int Hashtable::search(int stockID, int steps = 0)
         else
         {
             if(this->debug){std::cout << this->table[index]->number << " ? " << stockID << " (false)" << std::endl;} //DEBUG
-            index = search(++stockID, ++steps); // soll nächster Index geprüft werden (Quadratische Sondierung in Hash-Funktion)!
+            index = search(++stockID, ++steps); // soll naechster Index geprueft werden (Quadratische Sondierung in Hash-Funktion)!
         }
     }
     else
     {
         std::cout << "Aktie nicht gefunden!" << std::endl;
-        return TABLE_SIZE + 69; // Ungültigen Wert zurückgeben für Error-Handling
+        return TABLE_SIZE + 69; // Ungueltigen Wert zurueckgeben fuer Error-Handling
     }
     
     return index;
@@ -195,13 +195,13 @@ void Hashtable::addStock()
     newStock->name = name;
     newStock->wkn = wkn;
     
-    int index = add(newStock->number); // get ArrayIndex based on ID, liefert TABLE_SIZE++ zurück wenn Tabelle voll ist
+    int index = add(newStock->number); // get ArrayIndex based on ID, liefert TABLE_SIZE++ zurueck wenn Tabelle voll ist
     
-    // Wenn Alle Plätze belegt sind
+    // Wenn Alle Plaetze belegt sind
     if (index < TABLE_SIZE)
     {
         if(this->debug){std::cout << "Eingesetzt am Index " << index << std::endl;} //DEBUG
-        std::cout << "Aktie erfolgreich hinzugefügt!" << std::endl;
+        std::cout << "Aktie erfolgreich hinzugefuegt!" << std::endl;
         this->table[index] = newStock; // adding Stock into Hashtable at calculated ArrayIndex
     }
 }
@@ -214,8 +214,8 @@ void Hashtable::deleteStock()
     
     if(index < TABLE_SIZE)
     {
-        if(this->debug){std::cout << "Gelöscht am Index: " << index << std::endl;} //DEBUG
-        std::cout << "Aktie gelöscht!" << std::endl;
+        if(this->debug){std::cout << "Geloescht am Index: " << index << std::endl;} //DEBUG
+        std::cout << "Aktie geloescht!" << std::endl;
         delete this->table[index];
         this->table[index] = NULL;
     }
