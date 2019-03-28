@@ -81,6 +81,7 @@ void Stock::plotStockdays()
 	// Skalierungsfaktor berechnen und in for Schleife zum plotten verwenden
 	float scale = (max - min) / 30;
 	i = 0;
+	char bar = 254;
 	while (stockdays[i].isFilled) {
 		std::cout << stockdays[i].date[0] << "-"; 
 		if (stockdays[i].date[1] < 10) { std::cout << "0"; }
@@ -88,7 +89,7 @@ void Stock::plotStockdays()
 		if (stockdays[i].date[2] < 10) { std::cout << "0"; }
 		std::cout << stockdays[i].date[2] << " |";
 		for (int j = 0; j < ((stockdays[i].close - min) / scale) + ((max - min) / scale * 0.25); j++) {
-			std::cout << "#";
+			std::cout << bar;
 		}
 		std::cout << "  " << stockdays[i].close << std::endl;
 

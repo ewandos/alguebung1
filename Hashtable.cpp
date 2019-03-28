@@ -261,7 +261,7 @@ void Hashtable::plotStock()
 	{
 		if (this->debug) { std::cout << "Gefunden am Index: " << index << std::endl; } //DEBUG
 
-		std::cout << "\nGraphik zu " << sym << ":" << std::endl;
+		std::cout << "\nGraphik zu " << sym << ":\n" << std::endl;
 		this->table[index]->plotStockdays();
 	}
 }
