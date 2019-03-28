@@ -19,6 +19,7 @@ private:
     // Struct Data are now Classes called STOCKDAY
     Stockday stockdays[30];
     int stockdaysCount;
+    std::string getOsName();
 	
 public:
 	Stock();

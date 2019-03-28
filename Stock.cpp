@@ -16,6 +16,25 @@ Stock::~Stock()
 
 }
 
+std::string getOsName()
+{
+#ifdef _WIN32
+    return "Windows";
+#elif _WIN64
+    return "Windows";
+#elif __unix || __unix__
+    return "Unix";
+#elif __APPLE__ || __MACH__
+    return "Mac";
+#elif __linux__
+    return "Linux";
+#elif __FreeBSD__
+    return "FreeBSD";
+#else
+    return "Other";
+#endif
+}
+
 void Stock::inputCSV(std::string &path) {
     // Open Filestream
     // Separate different Lines from eachother
@@ -81,7 +100,16 @@ void Stock::plotStockdays()
 	// Skalierungsfaktor berechnen und in for Schleife zum plotten verwenden
 	float scale = (max - min) / 30;
 	i = 0;
-	char bar = 254;
+    
+    char bar;
+    if (getOsName().compare("Windows"))
+    {
+        bar = 254;
+    }
+    else if (getOsName().compare("Mac"))
+    {
+        bar = '#';
+    }
 	while (stockdays[i].isFilled) {
 		std::cout << stockdays[i].date[0] << "-"; 
 		if (stockdays[i].date[1] < 10) { std::cout << "0"; }
