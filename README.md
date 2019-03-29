@@ -1,15 +1,10 @@
 #  Ergänzungen
 
-## Hashtable::searchStock()
-- Ausgabe von aktuellstem STOCKDAY
+- IDs sind doubles CHECK
+- man darf nicht ein und die selbe Aktie hinzufügen
 
-## Alle Input-Methoden
-- Validierung
+- zwei IDs (Kürzel und Name)
 
-
-# Aufgaben
-- Load & Save (Serialisierung)
-- Plotting
-- CSV Import
-
-Habe was geändert.
+- man darf nicht ein und die selbe Aktie hinzufügen
+dabei wird eine Aktie mit allen drei Werten hinzugefügt, es wir nachgesehen
+wenn man mit Kürzel hinzufügt, wird geschaut ob Name schon hinzugefügt wurde

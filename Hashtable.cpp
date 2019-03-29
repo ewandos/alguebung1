@@ -46,22 +46,28 @@ int Hashtable::add(int stockID, int steps = 0)
     if(this->debug){std::cout << "Errechneter Index: " << index << " (" << stockID << ")" << std::endl;} //DEBUG
     
     // Abbruchbedingungen falls Tabelle voll ist
-    if (steps < TABLE_SIZE)
+    if (steps < TABLE_SIZE && !sameID(index, stockID))
     {
         // Kollisionsbehandlung (Rekursiv)
         if (isFree(index)) // wenn Platz frei ist
         {
             return index;
         }
-        else // ansonsten
+        else
         {
             index = add(stockID, ++steps); // soll naechster Index geprueft werden (Quadratische Sondierung in Hash-Funktion)!
         }
     }
+    else if (steps > TABLE_SIZE)
+    {
+        std::cout << "Tabelle ist voll! Bitte loeschen Sie einen Eintrag." << std::endl;
+        return TABLE_SIZE + 69; // Ungueltigen Wert (Wert welcher groeßer ist als das Array) zurueckgeben fuer Error-Handling
+    }
     else
     {
-        std::cout << "Table is full. Please delete one Stock and try again!" << std::endl;
-        return TABLE_SIZE + 69; // Ungueltigen Wert (Wert welcher groeßer ist als das Array) zurueckgeben fuer Error-Handling
+        // Wenn Aktie schon existiert.
+        std::cout << "Aktie existiert schon!" << std::endl;
+        return TABLE_SIZE + 69;
     }
     
     return index;
@@ -72,21 +78,21 @@ int Hashtable::search(int stockID, int steps = 0)
     int index = hash(stockID, steps);
     if(this->debug){std::cout << "Errechneter Index: " << index << " (" << stockID << ")" << std::endl;} // <- DEBUG
     
-    // Abbruchbedingungen falls Tabelle voll ist
+    // Abbruchbedingungen falls Tabelle voll ist ODER eine Aktie mit selber ID schon existiert.
     if (steps < TABLE_SIZE)
     {
         if (isFree(index)) // wenn Platz frei ist
         {
             index = search(stockID, ++steps);
         }
-        else if (this->table[index]->number == stockID)
+        else if (this->table[index]->symID == stockID)
         {
-            if(this->debug){std::cout << this->table[index]->number << " ? " << stockID << " (true)" << std::endl;} //DEBUG
+            if(this->debug){std::cout << this->table[index]->symID << " ? " << stockID << " (true)" << std::endl;} //DEBUG
             return index;
         }
         else
         {
-            if(this->debug){std::cout << this->table[index]->number << " ? " << stockID << " (false)" << std::endl;} //DEBUG
+            if(this->debug){std::cout << this->table[index]->symID << " ? " << stockID << " (false)" << std::endl;} //DEBUG
             index = search(++stockID, ++steps); // soll naechster Index geprueft werden (Quadratische Sondierung in Hash-Funktion)!
         }
     }
@@ -99,7 +105,7 @@ int Hashtable::search(int stockID, int steps = 0)
     return index;
 }
 
-int Hashtable::symToID(std::string &sym)
+double Hashtable::symToID(std::string &sym)
 {
     //calculate and unique ID for any given Stock based on its symbol
     
@@ -111,18 +117,18 @@ int Hashtable::symToID(std::string &sym)
         temp.append(std::to_string(f)); // append every int to another in a new string
     }
     
-    int index = std::stoi(temp); //cast it to int again
+    double id = std::stod(temp); //cast it to double
     
-    return index;
+    return id;
 }
 
-bool Hashtable::isFree(int &i)
+bool Hashtable::isFree(int &index)
 {
     // Check if there is an Pointer at given Index and return bool-value
     
-    if(this->debug){std::cout << "Index " << i;} //DEBUG
+    if(this->debug){std::cout << "Index " << index;} //DEBUG
     
-    if (this->table[i] == NULL)
+    if (this->table[index] == NULL)
     {
         if(this->debug){std::cout << " ist frei!" << std::endl;} //DEBUG
         return true;
@@ -132,6 +138,26 @@ bool Hashtable::isFree(int &i)
         if(this->debug){std::cout << " ist besetzt!" << std::endl;} //DEBUG
         return false;
     }
+}
+
+bool Hashtable::sameID(int &index, int &stockID)
+{
+    // Ueberprueft ob Index Frei ist und wenn er es nicht ist,
+    // ob dort schon die Aktie liegt, die wir hinzufügen wollen.
+    
+    if (!isFree(index))
+    {
+        if (this->table[index]->symID == stockID || this->table[index]->namID == stockID)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    return false;
 }
 
 std::string inputSymbol() // evtl in Classe Stock verlegen
@@ -186,23 +212,30 @@ void Hashtable::addStock()
     std::string name = inputName();
     std::string wkn = inputWKN();
     
+    // Generierung der ID
+    double symID = symToID(sym);
+    
     /* Put the Stock in Hashtable */
     Stock* newStock = new Stock;    // defining pointer
     
     newStock->symbol = sym;     // set symbol of new stock
-    newStock->number = symToID(sym);    // set ID based on Symbol
+    newStock->symID = symID;    // set ID based on Symbol
     
     newStock->name = name;
     newStock->wkn = wkn;
     
-    int index = add(newStock->number); // get ArrayIndex based on ID, liefert TABLE_SIZE++ zurueck wenn Tabelle voll ist
+    int index = add(newStock->symID); // get ArrayIndex based on ID, liefert TABLE_SIZE++ zurueck wenn Tabelle voll ist
     
-    // Wenn Alle Plaetze belegt sind
     if (index < TABLE_SIZE)
     {
         if(this->debug){std::cout << "Eingesetzt am Index " << index << std::endl;} //DEBUG
         std::cout << "Aktie erfolgreich hinzugefuegt!" << std::endl;
         this->table[index] = newStock; // adding Stock into Hashtable at calculated ArrayIndex
+    }
+    
+    else
+    {
+        delete newStock;
     }
 }
 

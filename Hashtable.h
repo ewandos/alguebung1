@@ -22,9 +22,10 @@ private:
     
     int hash(int, int);
     int add(int, int);
-    int symToID(std::string&);
+    double symToID(std::string&);
     int search(int, int);
     bool isFree(int&);
+    bool sameID(int&, int&);
     
 public:
 	Hashtable();

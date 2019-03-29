@@ -29,7 +29,7 @@ public:
 	std::string symbol;
     std::string name;
     std::string wkn;
-    int number;
+    double symID;
 
     void inputCSV(std::string&);
     void plotStockdays();
