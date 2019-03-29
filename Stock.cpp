@@ -138,9 +138,3 @@ void Stock::printStockday()
         std::cout << "Keine aktuellen Kursdaten gefunden!" << std::endl;
     }
 }
-
-
-
-
-
-

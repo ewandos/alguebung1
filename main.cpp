@@ -6,7 +6,6 @@ int main()
     Hashtable hash;
 	int input;
     
-    /*
     std::cout << "  _____ _             _      __  __                                   " << std::endl;
     std::cout << " / ____| |           | |    |  \\/  |                               " << std::endl;
     std::cout << "| (___ | |_ ___   ___| | __ | \\  / | __ _ _ __   __ _  __ _  ___ _ __ " << std::endl;
@@ -14,8 +13,7 @@ int main()
     std::cout << " ____) | || (_) | (__|   <  | |  | | (_| | | | | (_| | (_| |  __/ |   " << std::endl;
     std::cout << "|_____/ \\__\\___/ \\___|_|\\_\\ |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|   " << std::endl;
     std::cout << "                                                       __/ |          " << std::endl;
-    std::cout << "ehrfurchtvoll praesentiert von Andert & Ewert           |___/           " << std::endl;
-    */
+    std::cout << "ehrfurchtvoll praesentiert von Andert & Ewert         |___/           " << std::endl;
     
 	while (true)
     {
@@ -78,9 +76,7 @@ int main()
                 // Ask User to Enter valid input
                 std::cout << "Bitte mit gueltiger Eingabe wiederholen." << std::endl;
                 break;
-		}
-        
-        
+		}  
 	}
 
 	return 0;

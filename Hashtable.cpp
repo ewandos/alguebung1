@@ -373,8 +373,8 @@ void Hashtable::load() {
 	std::string close;
 	std::string adj;
 	std::string volume;
-	// pointer consisting of stockday info
-	std::string* stockdayData = new std::string[30];
+	// whole line of one stockday entry
+	std::string stockLine;
 
 	// line string for reading csv
 	std::string line;
@@ -401,18 +401,22 @@ void Hashtable::load() {
 			addStock(1, headerData);
 		}
 		else {
-			std::cout << "Daten von " << curName << std::endl;
-			/*
-			std::getline(ss, date, ',');
+			// instead of getting each element, try to get whole line without messing everything up
+			// can't do that ^ for now, instead doing string concatenation
+
+			date = headerCheck;		// if headerCheck isn't "header", a date was read.
 			std::getline(ss, open, ',');
 			std::getline(ss, high, ',');
 			std::getline(ss, low, ',');
 			std::getline(ss, close, ',');
 			std::getline(ss, adj, ',');
 			std::getline(ss, volume, ',');
-			*/
+
+			stockLine = date + "," + open + "," + high + "," + low + "," + close + "," + adj + "," + volume;
+			std::cout << stockLine << " | " << curName << std::endl;
+
+			// now that we got stockLine, inputCSV etc. can be called with it
 		}
 	}
-
 	loadFile.close();
 }
