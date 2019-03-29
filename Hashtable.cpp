@@ -1,4 +1,7 @@
 #include <cmath>
+#include <sstream>
+#include <fstream>
+#include <string>
 #include "Hashtable.h"
 
 /*
@@ -147,7 +150,7 @@ bool Hashtable::sameID(int &index, int &stockID)
     
     if (!isFree(index))
     {
-        if (this->table[index]->symID == stockID || this->table[index]->namID == stockID)
+        if (this->table[index]->symID == stockID)
         {
             return true;
         }
@@ -205,12 +208,24 @@ std::string inputName() // evtl in Classe Stock verlegen
  * =================
  */
 
-void Hashtable::addStock()
+void Hashtable::addStock(int userOrLoad, std::string* data)
 {
-    // Get Stock Information from User
-    std::string sym = inputSymbol();
-    std::string name = inputName();
-    std::string wkn = inputWKN();
+	std::string sym;
+	std::string name;
+	std::string wkn;
+
+	if (userOrLoad == 0) {
+		// Get Stock Information from User
+		sym = inputSymbol();
+		name = inputName();
+		wkn = inputWKN();
+	}
+	else {
+		// Get Stock Information from load file (pointer containing sym, name & wkn)
+		sym = data[0];
+		name = data[1];
+		wkn = data[2];
+	}
     
     // Generierung der ID
     double symID = symToID(sym);
@@ -299,12 +314,105 @@ void Hashtable::plotStock()
 	}
 }
 
-void Hashtable::save()
-{
+void Hashtable::save() {
+	std::ofstream saveFile;
 
+	saveFile.open("save.csv");
+
+	int i;
+	int j;
+	Stockday* current;
+	// speichere nur gefüllte table slots (duh)
+	for (i = 0; i < TABLE_SIZE; i++) {
+		if (!isFree(i)) {
+
+			// symbol, name, wkn
+			saveFile << "header," << table[i]->symbol << "," << table[i]->name << "," << table[i]->wkn << std::endl;
+
+			// jeder stockday eintrag
+			j = 0;
+			while (table[i]->stockdays[j].isFilled) {
+				current = table[i]->stockdays;
+
+				saveFile << current[j].date[0] << "-" << current[j].date[1] << "-" << current[j].date[2]
+					<< "," << current[j].open << "," << current[j].high << ","
+					<< current[j].low << "," << current[j].close << "," << current[j].adj << ","
+					<< current[j].volume << std::endl;
+				j++;
+			}
+		}
+	}
+
+	std::cout << "Speichern erfolgreich!" << std::endl;
+	saveFile.close();
 }
 
-void Hashtable::load()
-{
+void Hashtable::load() {
+	std::ifstream loadFile("save.csv");
+	if (!loadFile.is_open()) {
+		std::cout << "Speicherdatei konnte nicht geoeffnet werden. Druecken zum Beenden." << std::endl;
+		return;
+	}
+	else {
+		std::cout << "Speicherdatei gefunden.\n" << std::endl;
+	}
 
+	// strings related to header info
+	std::string headerCheck;
+	std::string curSymbol;
+	std::string curName;
+	std::string curWkn;
+	// pointer consisting of symbol, name and wkn
+	std::string* headerData = new std::string[3];
+
+	// strings related to stockday info
+	std::string date;
+	std::string open;
+	std::string high;
+	std::string low;
+	std::string close;
+	std::string adj;
+	std::string volume;
+	// pointer consisting of stockday info
+	std::string* stockdayData = new std::string[30];
+
+	// line string for reading csv
+	std::string line;
+
+	while (std::getline(loadFile, line)) {
+
+		std::stringstream ss(line);
+		std::getline(ss, headerCheck, ',');
+
+		if (headerCheck.compare("header") == 0) {	// check if in header line
+
+			std::cout << "in header Zeile" << std::endl;
+
+			std::getline(ss, curSymbol, ',');
+			std::getline(ss, curName, ',');
+			std::getline(ss, curWkn, ',');
+
+			// input can happen
+			headerData[0] = curSymbol;
+			headerData[1] = curName;
+			headerData[2] = curWkn;
+
+			add(symToID(curSymbol));
+			addStock(1, headerData);
+		}
+		else {
+			std::cout << "Daten von " << curName << std::endl;
+			/*
+			std::getline(ss, date, ',');
+			std::getline(ss, open, ',');
+			std::getline(ss, high, ',');
+			std::getline(ss, low, ',');
+			std::getline(ss, close, ',');
+			std::getline(ss, adj, ',');
+			std::getline(ss, volume, ',');
+			*/
+		}
+	}
+
+	loadFile.close();
 }

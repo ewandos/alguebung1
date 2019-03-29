@@ -42,7 +42,7 @@ int main()
                 break;
             case 1:
                 // Eine Aktie mit Namen, WKN und Kuerzel wird hinzugefuegt
-                hash.addStock(); // FERTIG
+                hash.addStock(0, NULL); // FERTIG
                 break;
             case 2:
                 // Aktie wird geloescht
@@ -70,6 +70,7 @@ int main()
             case 7:
                 // Programm laedt die Hashtabelle aus einer Datei
                 hash.load();
+				break;
             case 8:
                 // Programm wird beendet
                 return 0;

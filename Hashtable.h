@@ -32,7 +32,7 @@ public:
 	~Hashtable();
     bool debug;
     
-    void addStock();
+    void addStock(int, std::string*);
     void deleteStock();
     void importStockday();
     void searchStock();

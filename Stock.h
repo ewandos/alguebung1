@@ -17,7 +17,6 @@ class Stock
 {
 private:
     // Struct Data are now Classes called STOCKDAY
-    Stockday stockdays[30];
     int stockdaysCount;
 	int getAsciiByOs();
 	
@@ -29,6 +28,7 @@ public:
 	std::string symbol;
     std::string name;
     std::string wkn;
+	Stockday stockdays[30];
     double symID;
 
     void inputCSV(std::string&);
