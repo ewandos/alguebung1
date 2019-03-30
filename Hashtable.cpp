@@ -343,6 +343,7 @@ void Hashtable::save() {
 		}
 	}
 
+	saveFile << "EOF,";		// EOF markers are a useful thing
 	std::cout << "Speichern erfolgreich!" << std::endl;
 	saveFile.close();
 }
@@ -373,8 +374,11 @@ void Hashtable::load() {
 	std::string close;
 	std::string adj;
 	std::string volume;
-	// whole line of one stockday entry
+	// whole line of one stockday entry, made up of concatenated stockday info strings (date + open + ...)
 	std::string stockLine;
+	// pointer to array of every existing stockLine (days)
+	std::string* allStockLines= new std::string[30];
+	int count = 0;
 
 	// line string for reading csv
 	std::string line;
@@ -384,15 +388,26 @@ void Hashtable::load() {
 		std::stringstream ss(line);
 		std::getline(ss, headerCheck, ',');
 
-		if (headerCheck.compare("header") == 0) {	// check if in header line
+		if (headerCheck.compare("header") == 0 || headerCheck.compare("EOF") == 0) {	// check if in header line
 
-			std::cout << "in header Zeile" << std::endl;
+			// call inputLoadedStockdays, if count != 0 aka if there's already stuff collected
+			if (count != 0) {
+				importFromFile(symToID(curSymbol), allStockLines, count);
+
+				// if EOF is reached and the remaining stockdays have been loaded in with importFromFile(),
+				// this function is done and returns
+				if (headerCheck.compare("EOF") == 0) {
+					return;
+				}
+			}
+
+			count = 0;	// starting counting anew for each header info
 
 			std::getline(ss, curSymbol, ',');
 			std::getline(ss, curName, ',');
 			std::getline(ss, curWkn, ',');
 
-			// input can happen
+			// input can happen now
 			headerData[0] = curSymbol;
 			headerData[1] = curName;
 			headerData[2] = curWkn;
@@ -413,10 +428,64 @@ void Hashtable::load() {
 			std::getline(ss, volume, ',');
 
 			stockLine = date + "," + open + "," + high + "," + low + "," + close + "," + adj + "," + volume;
-			std::cout << stockLine << " | " << curName << std::endl;
+			allStockLines[count] = stockLine;
+			count++;
+
+			// std::cout << stockLine << " | " << curName << " entry no. " << count << std::endl;
 
 			// now that we got stockLine, inputCSV etc. can be called with it
 		}
 	}
 	loadFile.close();
+}
+
+// this function just loads the stockday info into Stocks::stockdays[]
+void Hashtable::importFromFile(double symID, std::string* array, int count) {
+
+	int index, i;
+	Stockday* ptr = new Stockday;
+	// temporary variables because getline only works with strings ._.
+	std::string dateTemp;
+	std::string openTemp;
+	std::string highTemp;
+	std::string lowTemp;
+	std::string closeTemp;
+	std::string adjTemp;
+	std::string volumeTemp;
+
+	index = search(symID);
+
+	for (i = 0; i < count; i++) {
+		// create new stringstream for each iteration of loop
+		std::stringstream ss;
+		ss.str(array[i]);
+	
+		// handling the date entry (end my suffering)
+		std::getline(ss, dateTemp, '-');
+		ptr->date[0] = stoi(dateTemp);
+		std::getline(ss, dateTemp, '-');
+		ptr->date[1] = stoi(dateTemp);
+		std::getline(ss, dateTemp, ',');
+		ptr->date[2] = stoi(dateTemp);
+
+		std::getline(ss, openTemp, ',');
+		ptr->open = stod(openTemp);
+
+		std::getline(ss, highTemp, ',');
+		ptr->high = stod(highTemp);
+
+		std::getline(ss, lowTemp, ',');
+		ptr->low = stod(lowTemp);
+
+		std::getline(ss, closeTemp, ',');
+		ptr->close = stod(closeTemp);
+
+		std::getline(ss, adjTemp, ',');
+		ptr->adj = stod(adjTemp);
+
+		std::getline(ss, volumeTemp, '\n');
+		ptr->volume = stod(volumeTemp);
+
+		table[index]->stockdays[i] = *ptr;
+	}
 }

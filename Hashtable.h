@@ -26,6 +26,7 @@ private:
     int search(int, int);
     bool isFree(int&);
     bool sameID(int&, int&);
+	void importFromFile(double, std::string*, int);
     
 public:
 	Hashtable();
