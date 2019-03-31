@@ -13,6 +13,9 @@
 #include "Stock.h"
 #include <string>
 #include <iostream>
+#include <cmath>
+#include <sstream>
+#include <fstream>
 
 class Hashtable
 {
