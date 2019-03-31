@@ -46,8 +46,13 @@ Nachdem die Aktie mit einer erfolgreichen Suche zurückgegeben wird. Werden die 
 Die Darstellung geschieht über ASCII-Charaktere (je nach OS unterschiedlich), welchen abhängig von der Größe der dazustellenden Spanne ein anderes Gewicht gegeben wird.
 
 ### Speichern
+Beim Speichern werden die relevanten Daten in eine CSV-Datei mittels ofstream geschrieben. Je Aktie gibt es eine Zeile mit "header" infos, sprich Symbol, Name und WKN der Aktie,
+gefolgt von den einzelnen Einträgen pro Zeile. Vor Symbol, etc. wird der String "header" geschrieben, um das einlesen zu erleichtern, am Ende des files wird "EOF" geschrieben.
 
 ### Laden
+Das Einlesen der CSV-Datei funktioniert so, dass überprüft wird, ob man sich gerade in einer "header"-Zeile befindet oder nicht, mittels string.compare(). Falls ja, werden die
+relevanten Informationen eingelesen, falls nein weiß das Programm, dass gerade Aktieneinträge der jeweiligen Aktie gelesen werden. In den "header"-Zeilen werden mit Symbol, Name und WKN die Funktionen zum hinzufügen von Aktien aufgerufen.
+Kommt man in der CSV-Datei in eine neue "header"-Zeile der nächsten gespeicherten Aktie, werden die eingelesenen Einträge der vorigen Aktie in das entsprechende stockdays array geschrieben.
 
 ## Löschalgorithmus
 
