@@ -8,7 +8,7 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
-#define TABLE_SIZE 20
+#define TABLE_SIZE 1000
 
 #include "Stock.h"
 #include <string>

@@ -29,6 +29,7 @@ Hashtable::~Hashtable()
  */
 
 int Hashtable::hash(int index, int steps = 0) {
+    
     /*
      * index = ArrayIndex oder StockID
      * steps = wie oft die Hashfunktion in der Prozedur aufgerufen wurde (fuer Abbruchbedingungen)
@@ -36,6 +37,8 @@ int Hashtable::hash(int index, int steps = 0) {
      */
     
     double sondierung = pow(2, (double)steps);
+    std::cout << index << "," << (int)sondierung << "," << steps << std::endl;
+    double output = ((double)index + sondierung + (double) steps) % TABLE_SIZE;
     return (index + (int)sondierung + steps) % TABLE_SIZE;
 }
 
