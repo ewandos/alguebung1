@@ -1,4 +1,5 @@
 # Datenstrukturen
+hallo
 
 ## Klasse `Hashtable`
 Verwaltet die Hashtable und alle Methoden, welche diese Hashtable modifizieren. Beinhaltet die Hashtabelle selbst als Array von `Stock` in welcher Pointer für alle Aktien gespeichert werden. Das einzigartige Symbol jeder Aktie soll bestimmen, wo die Aktie abgespeichert wird.
